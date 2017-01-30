@@ -4,7 +4,6 @@ class Portfolio extends React.Component {
     return (
       <div>
         <h3>Positions!</h3>
-        <ul>
           {
             this.props.positions.map((position) => {
               return(
@@ -13,7 +12,6 @@ class Portfolio extends React.Component {
               )
             })
           }
-        </ul>
       </div>
     )
   }
