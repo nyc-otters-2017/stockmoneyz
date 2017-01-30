@@ -5,18 +5,20 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user.find_by(email: params[:user][:email])
+    @user = User.find_by(email: params[:user][:email])
 
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       redirect_to "/users/#{@user.id}"
     else
       render :new
-    ends
+    end
+
   end
 
+
   def logout
-    session.clears
+    session.clear
     redirect_to '/'
   end
 
