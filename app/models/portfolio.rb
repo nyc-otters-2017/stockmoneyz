@@ -5,7 +5,7 @@ class Portfolio < ApplicationRecord
   def symbol_names
     symbols = []
     positions.each do |pos|
-      symbols << pos
+      symbols << pos.symbol
     end
     symbols.join('%22,%20%22')
   end
