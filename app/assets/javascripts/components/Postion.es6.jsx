@@ -4,7 +4,8 @@ class Position extends React.Component {
     super()
     this.state = {
       details: false,
-      numShares: ''
+      numShares: '',
+      buyPrice: ''
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -12,8 +13,9 @@ class Position extends React.Component {
   componentDidMount() {
     $.ajax({
       url: 'positions/' + this.props.data.symbol
-    }).done((shares) => {
-      this.setState({numShares: shares})
+    }).done((response) => {
+      this.setState({numShares: response.numShares, buyPrice: response.buyPrice})
+      this.setState({buyPrice: response.buyPrice})
     })
   }
 
@@ -37,8 +39,8 @@ class Position extends React.Component {
           </tr>
           <tr>
             <td>{this.state.numShares * this.props.data.Ask}</td>
-            <td>{this.state.numShares * this.props.data.Bid}</td>
-            <td>{(this.state.numShares * this.props.data.Ask) - (this.state.numShares * this.props.data.Bid)}</td>
+            <td>{this.state.numShares * this.state.buyPrice}</td>
+            <td>{(this.state.numShares * this.props.data.Ask) - (this.state.numShares * this.state.buyPrice)}</td>
           </tr>
           </tbody>
         </table>
