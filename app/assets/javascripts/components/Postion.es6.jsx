@@ -3,9 +3,25 @@ class Position extends React.Component {
   constructor() {
     super()
     this.state = {
-      details: false
+      details: true,
+      numShares: 0,
+      buyPrice: 0,
+      costBasis: 0,
+      costValue: 0,
+      pnL: 0
     }
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  componentDidMount() {
+    $.ajax({
+      url: 'positions/' + this.props.data.symbol
+    }).done((response) => {
+      this.setState({numShares: response.numShares, buyPrice: response.buyPrice})
+      this.setState({costBasis: (this.state.numShares * this.props.data.Ask)})
+      this.setState({costValue: (this.state.numShares * this.state.buyPrice)})
+      this.setState({pnL: (this.state.numShares * this.props.data.Ask) - (this.state.numShares * this.state.buyPrice)})
+    })
   }
 
   handleClick(event) {
@@ -20,18 +36,18 @@ class Position extends React.Component {
     if (yourDetailsAreShowing) {
       var details = (
         <table>
-          <td>
+          <tbody>
+          <tr>
             <th>Current Value</th>
-            <tr>{this.props.data.Ask}</tr>
-          </td>
-          <td>
             <th>Cost Basis</th>
-            <tr>{this.props.data.Bid}</tr>
-          </td>
-          <td>
-            <th>Current Value</th>
-            <tr>{this.props.data.Ask}</tr>
-          </td>
+            <th>P & L</th>
+          </tr>
+          <tr>
+            <td>{this.state.costBasis}</td>
+            <td>{this.state.costValue}</td>
+            <td>{this.state.pnL}</td>
+          </tr>
+          </tbody>
         </table>
       )
     }

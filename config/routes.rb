@@ -3,14 +3,17 @@ Rails.application.routes.draw do
 
   root to: "users#index"
 
+
   resources :sessions, only: [:new, :create]
+
   get 'sessions/logout' => "sessions#logout"
+
   resources :users do
+    get 'portfolios/:id/positions' => 'portfolios#positions'
     get 'portfolios' => 'portfolios#index'
     get 'portfolios/all' => 'portfolios#all'
     get 'portfolios/list' => 'portfolios#list'
-    get 'portfolios/:id/positions' => 'portfolios#positions'
-    get 'positions/:id' => 'positions#details'
+    get 'positions/:symbol' => 'positions#details'
   end
 
 

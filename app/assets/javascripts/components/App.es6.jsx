@@ -3,27 +3,31 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      positions: []
+      portfolios: []
     }
   }
 
-  handleClick(event) {
-    event.preventDefault()
-    this.props.onGetPositions(this.props.portfolioId)
+  componentDidMount() {
+    $.ajax({
+      url: '/users/' + this.props.user_id + '/portfolios/list'
+    }).done((response) => {
+      this.setState({portfolios: response})
+    })
   }
-
 
   render() {
     return (
       <div>
-        <h1>Stocks!</h1>
+        <h1>Things!</h1>
           {
-            <div>
-        <button onClick={this.handleClick.bind(this)} > click me </button>
-            <Portfolio positions={this.state.positions}/>
-            </div>
-          }
+            this.state.portfolios.map((p, i) => {
+              return (
+                <Portfolio key={i} portfolioId={p.id} userId ={p.user_id} portfolioName={p.name}/>
+              )
+          })
+        }
       </div>
     )
   }
+
 }
