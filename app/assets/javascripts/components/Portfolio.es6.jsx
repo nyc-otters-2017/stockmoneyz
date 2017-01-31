@@ -12,14 +12,13 @@ class Portfolio extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.getPositions = this.getPositions.bind(this)
-    this.total = this.total.bind(this)
   }
 
   getPositions(userId,id) {
     $.ajax({
       url: 'portfolios/' + id + '/positions'
     }).done((response) => {
-      this.setState({positions: [response.query.results.quote]})
+      this.setState({positions: [].concat.apply([], response.query.results.quote)})
     })
   }
 
