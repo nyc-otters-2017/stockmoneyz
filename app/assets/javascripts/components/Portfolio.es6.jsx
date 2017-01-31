@@ -27,6 +27,10 @@ class Portfolio extends React.Component {
 
 
   render() {
+    let costBasis, costValue, pnL = 0
+    for (var i =0; i < this.state.positions.length; i++) {
+      costBasis += this.state.positions[i]
+    }
     let yourDetailsAreShowing = this.state.details
     if (yourDetailsAreShowing) {
       var details = (
@@ -34,7 +38,7 @@ class Portfolio extends React.Component {
           {
             this.state.positions.map((pos, i) => {
               return (
-                <Position key={i} data={pos}/>
+                <Position key={i} data={pos} />
               )
             })
           }

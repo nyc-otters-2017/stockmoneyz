@@ -3,19 +3,24 @@ class Position extends React.Component {
   constructor() {
     super()
     this.state = {
-      details: false,
-      numShares: '',
-      buyPrice: ''
+      details: true,
+      numShares: 0,
+      buyPrice: 0,
+      costBasis: 0,
+      costValue: 0,
+      pnL: 0
     }
     this.handleClick = this.handleClick.bind(this)
   }
 
-  componentDidMount() {
+  componentWillMount() {
     $.ajax({
       url: 'positions/' + this.props.data.symbol
     }).done((response) => {
       this.setState({numShares: response.numShares, buyPrice: response.buyPrice})
-      this.setState({buyPrice: response.buyPrice})
+      this.setState({costBasis: (this.state.numShares * this.props.data.Ask)})
+      this.setState({costValue: (this.state.numShares * this.state.buyPrice)})
+      this.setState({pnL: (this.state.numShares * this.props.data.Ask) - (this.state.numShares * this.state.buyPrice)})
     })
   }
 
@@ -38,9 +43,9 @@ class Position extends React.Component {
             <th>P & L</th>
           </tr>
           <tr>
-            <td>{this.state.numShares * this.props.data.Ask}</td>
-            <td>{this.state.numShares * this.state.buyPrice}</td>
-            <td>{(this.state.numShares * this.props.data.Ask) - (this.state.numShares * this.state.buyPrice)}</td>
+            <td>{this.state.costBasis}</td>
+            <td>{this.state.costValue}</td>
+            <td>{this.state.pnL}</td>
           </tr>
           </tbody>
         </table>
