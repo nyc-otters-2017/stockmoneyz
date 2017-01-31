@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      redirect_to "/users/#{@user.id}"
+      redirect_to user_portfolios_url(user_id: @user.id)
     else
       render :new
     end
