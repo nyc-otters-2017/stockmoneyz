@@ -9,7 +9,7 @@ class Portfolio extends React.Component {
 
   handleClick(event) {
     event.preventDefault()
-    this.props.onGetPositions(this.props.portfolioId)
+    this.props.onGetPositions(this.props.userId,this.props.portfolioId)
 
   }
 

@@ -9,19 +9,22 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+
     $.ajax({
-      url: '/portfolios/list'
+      url: '/users//portfolios/list'
     }).done((response) => {
+      debugger
       this.setState({portfolios: response})
+
 
     })
   }
 
-  getPositions(id) {
+  getPositions(userId,id) {
     $.ajax({
-      url: '/portfolios/' + id + '/positions'
+      url: 'users/' + userId +  '/portfolios/' + id + '/positions'
     }).done((response) => {
-      debugger
+
       this.setState({positions: response.query.results.quote})
     })
   }
@@ -33,7 +36,7 @@ class App extends React.Component {
           {
             this.state.portfolios.map((p, i) => {
               return (
-                <Portfolio onGetPositions={this.getPositions} key={i} portfolioId={p.id} portfolioName={p.name}/>
+                <Portfolio onGetPositions={this.getPositions} key={i} portfolioId={p.id} userId ={p.user_id} portfolioName={p.name}/>
               )
           })
         }
