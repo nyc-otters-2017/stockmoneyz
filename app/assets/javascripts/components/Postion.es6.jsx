@@ -20,18 +20,18 @@ class Position extends React.Component {
     if (yourDetailsAreShowing) {
       var details = (
         <table>
-          <td>
+          <tr>
             <th>Current Value</th>
-            <tr>{this.props.data.Ask}</tr>
-          </td>
-          <td>
+            <td>{this.props.data.Ask}</td>
+          </tr>
+          <tr>
             <th>Cost Basis</th>
-            <tr>{this.props.data.Bid}</tr>
-          </td>
-          <td>
+            <td>{this.props.data.Bid}</td>
+          </tr>
+          <tr>
             <th>Current Value</th>
-            <tr>{this.props.data.Ask}</tr>
-          </td>
+            <td>{this.props.data.Ask}</td>
+          </tr>
         </table>
       )
     }

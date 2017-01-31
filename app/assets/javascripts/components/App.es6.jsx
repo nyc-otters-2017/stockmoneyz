@@ -5,27 +5,13 @@ class App extends React.Component {
     this.state = {
       portfolios: []
     }
-    this.getPositions = this.getPositions.bind(this)
   }
 
   componentDidMount() {
-
     $.ajax({
-      url: '/users//portfolios/list'
+      url: '/users/' + this.props.user_id + '/portfolios/list'
     }).done((response) => {
-      debugger
       this.setState({portfolios: response})
-
-
-    })
-  }
-
-  getPositions(userId,id) {
-    $.ajax({
-      url: 'users/' + userId +  '/portfolios/' + id + '/positions'
-    }).done((response) => {
-
-      this.setState({positions: response.query.results.quote})
     })
   }
 
@@ -36,7 +22,7 @@ class App extends React.Component {
           {
             this.state.portfolios.map((p, i) => {
               return (
-                <Portfolio onGetPositions={this.getPositions} key={i} portfolioId={p.id} userId ={p.user_id} portfolioName={p.name}/>
+                <Portfolio key={i} portfolioId={p.id} userId ={p.user_id} portfolioName={p.name}/>
               )
           })
         }
