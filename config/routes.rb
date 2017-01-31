@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'portfolios/:id/positions' => 'portfolios#positions'
   get 'positions/:id' => 'positions#details'
 
+  root to: "users#index"
+
   resources :sessions, only: [:new, :create]
   get 'sessions/logout' => "sessions#logout"
   resources :users

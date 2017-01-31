@@ -1,0 +1,95 @@
+body {
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+div a {
+
+    text-decoration: inherit;
+
+}
+
+div a:hover
+{
+     color:black;
+     text-decoration: inherit;
+     cursor:pointer;
+}
+
+div p.sgnup-msg {
+
+  color: white;
+  text-shadow: 2px 4px 5px black;
+
+}
+header {
+  padding: 20px 0;
+}
+
+header .row {
+
+  display: flex;
+  align-items: center;
+
+}
+
+header nav {
+   display: flex;
+   justify-content: flex-end;
+}
+
+.jumbotron{
+
+  display: flex;
+  align-items: center;
+  height: 500px;
+
+  background-image: url("https://cdn.pixabay.com/photo/2015/02/02/11/09/office-620822_960_720.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.jumbotron h2{
+
+  color: #fff;
+}
+
+
+.form-container{
+  position: absolute;
+  right: 600px;
+  width: 400px;
+  height: 500px;
+  border: 1px solid black;
+  padding: 25px;
+  margin: 20px;
+  border-radius: 10px;
+  align-items: center;
+  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.2);
+
+}
+
+.input-field{
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+nav p{
+
+  padding: 10px;
+}
+
+.btn{
+
+}
+
+.btn-frm{
+
+  margin: "20px";
+
+}
+

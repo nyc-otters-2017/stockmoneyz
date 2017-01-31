@@ -1,2 +1,18 @@
-<h1> Hello, <%= @user.full_name %> </h1>
-<p><a href="/sessions/logout">logout</a></p>
+<h1>  </h1>
+
+<section class="jumbotron">
+  <div class="container">
+    <div class="row text-center">
+        <p class="sgnup-msg">Hello, <%= @user.full_name %></p>
+    </div>
+  </div>
+</section>
+<div id="prof-container">
+<%=@user.portfolios.each do |portfolio| %>
+  <div class="port-container">
+    <%portfolio.name %>
+  </div>
+<%end%>
+</div>
+
+
