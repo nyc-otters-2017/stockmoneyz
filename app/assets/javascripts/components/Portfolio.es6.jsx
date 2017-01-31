@@ -15,10 +15,14 @@ class Portfolio extends React.Component {
     this.total = this.total.bind(this)
   }
 
+
+
+
   getPositions(userId,id) {
     $.ajax({
       url: 'portfolios/' + id + '/positions'
     }).done((response) => {
+      debugger
       this.setState({positions: [response.query.results.quote]})
     })
   }
@@ -39,6 +43,8 @@ class Portfolio extends React.Component {
           {
             this.state.positions.map((pos, i) => {
               return (
+
+
                 <Position key={i} data={pos} />
               )
             })

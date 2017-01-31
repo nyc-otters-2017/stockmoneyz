@@ -5,10 +5,5 @@ class PositionsController < ApplicationController
     render json: {numShares: position.num_shares, buyPrice: position.buy_price}
   end
 
-  private
-
-  def position_params
-    params.require(:position).permit(:symbol)
-  end
 
 end
