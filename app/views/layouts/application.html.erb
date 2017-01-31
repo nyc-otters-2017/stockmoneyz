@@ -16,7 +16,7 @@
       <nav class="col-sm-8 text-right">
         <% if logged_in? %>
           <p><a href="/sessions/logout">logout</a></p>
-          <p><a href="/users/<%= current_user.id %>"> profile </a></p>
+          <p><a href="/users/<%= current_user.id %>/portfolios"> portfolios </a></p>
         <%else%>
            <p><a href="/users/new"> signup </a></p>
            <p><a href="/sessions/new"> login </a></p>
