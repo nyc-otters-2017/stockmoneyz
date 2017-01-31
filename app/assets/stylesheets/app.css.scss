@@ -45,7 +45,7 @@ header nav {
   align-items: center;
   height: 500px;
 
-  background-image: url("https://cdn.pixabay.com/photo/2015/02/02/11/09/office-620822_960_720.jpg");
+  background-image: asset-url('background.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -92,4 +92,3 @@ nav p{
   margin: "20px";
 
 }
-
