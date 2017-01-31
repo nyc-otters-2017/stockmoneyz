@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+
+
   def new
 
   end
@@ -21,6 +23,14 @@ class SessionsController < ApplicationController
     session.clear
     redirect_to '/'
   end
+
+  private
+
+  def login_param_email
+    params.require(:user).permit(:email)
+  end
+
+
 
 
 end
