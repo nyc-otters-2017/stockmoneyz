@@ -1,9 +1,6 @@
 class SessionsController < ApplicationController
 
-
-
   def new
-
   end
 
   def create
@@ -17,7 +14,6 @@ class SessionsController < ApplicationController
     end
 
   end
-
 
   def logout
     session.clear
