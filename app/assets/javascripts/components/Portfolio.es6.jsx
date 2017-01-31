@@ -1,17 +1,29 @@
 class Portfolio extends React.Component {
 
+  constructor() {
+    super()
+    this.state = {
+      positions: []
+    }
+  }
+
+  handleClick(event) {
+    event.preventDefault()
+    this.props.onGetPositions(this.props.userId,this.props.portfolioId)
+
+  }
+
+
   render() {
     return (
       <div>
-        <h3>Positions!</h3>
-          {
-            this.props.positions.map((position) => {
-              return(
-                <Position key={position.symbol}
-                  data={position}/>
-              )
-            })
-          }
+        <h1>{this.props.portfolioName}</h1>
+
+        <button onClick={this.handleClick.bind(this)} > click me </button>
+
+
+
+
       </div>
     )
   }
