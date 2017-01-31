@@ -5,9 +5,14 @@ class Portfolio extends React.Component {
     this.state = {
       positions: [],
       details: false,
+      buyPrice: 0,
+      costBasis: 0,
+      costValue: 0,
+      pnL: 0
     }
     this.handleClick = this.handleClick.bind(this)
     this.getPositions = this.getPositions.bind(this)
+    this.total = this.total.bind(this)
   }
 
   getPositions(userId,id) {
@@ -25,13 +30,9 @@ class Portfolio extends React.Component {
     this.setState({details: !status})
   }
 
-
   render() {
-    let costBasis, costValue, pnL = 0
-    for (var i =0; i < this.state.positions.length; i++) {
-      costBasis += this.state.positions[i]
-    }
     let yourDetailsAreShowing = this.state.details
+
     if (yourDetailsAreShowing) {
       var details = (
         <div>

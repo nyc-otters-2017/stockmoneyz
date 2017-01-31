@@ -13,7 +13,7 @@ class Position extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     $.ajax({
       url: 'positions/' + this.props.data.symbol
     }).done((response) => {
