@@ -3,9 +3,18 @@ class Position extends React.Component {
   constructor() {
     super()
     this.state = {
-      details: false
+      details: false,
+      numShares: ''
     }
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  componentDidMount() {
+    $.ajax({
+      url: 'positions/' + this.props.data.symbol
+    }).done((shares) => {
+      this.setState({numShares: shares})
+    })
   }
 
   handleClick(event) {
@@ -20,18 +29,18 @@ class Position extends React.Component {
     if (yourDetailsAreShowing) {
       var details = (
         <table>
+          <tbody>
           <tr>
             <th>Current Value</th>
-            <td>{this.props.data.Ask}</td>
-          </tr>
-          <tr>
             <th>Cost Basis</th>
-            <td>{this.props.data.Bid}</td>
+            <th>P & L</th>
           </tr>
           <tr>
-            <th>Current Value</th>
-            <td>{this.props.data.Ask}</td>
+            <td>{this.state.numShares * this.props.data.Ask}</td>
+            <td>{this.state.numShares * this.props.data.Bid}</td>
+            <td>{(this.state.numShares * this.props.data.Ask) - (this.state.numShares * this.props.data.Bid)}</td>
           </tr>
+          </tbody>
         </table>
       )
     }

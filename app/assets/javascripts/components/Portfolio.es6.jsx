@@ -4,7 +4,7 @@ class Portfolio extends React.Component {
     super()
     this.state = {
       positions: [],
-      details: false
+      details: false,
     }
     this.handleClick = this.handleClick.bind(this)
     this.getPositions = this.getPositions.bind(this)
@@ -28,7 +28,6 @@ class Portfolio extends React.Component {
 
   render() {
     let yourDetailsAreShowing = this.state.details
-    console.log(this.state.positions)
     if (yourDetailsAreShowing) {
       var details = (
         <div>

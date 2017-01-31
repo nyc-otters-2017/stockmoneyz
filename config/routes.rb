@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get 'portfolios' => 'portfolios#index'
     get 'portfolios/all' => 'portfolios#all'
     get 'portfolios/list' => 'portfolios#list'
-    get 'positions/:id' => 'positions#details'
+    get 'positions/:symbol' => 'positions#details'
   end
 
 
