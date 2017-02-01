@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     get 'portfolios' => 'portfolios#index'
     get 'portfolios/all' => 'portfolios#all'
     get 'portfolios/list' => 'portfolios#list'
-    get 'positions/:symbol' => 'positions#details'
+    get 'portfolios/:portfolio_id/positions/:symbol' => 'positions#details'
+    patch 'portfolios/:portfolio_id/positions/:symbol' => 'positions#update'
     resources :position
   end
 

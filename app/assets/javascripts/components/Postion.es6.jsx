@@ -15,7 +15,7 @@ class Position extends React.Component {
 
   componentDidMount() {
     $.ajax({
-      url: 'positions/' + this.props.data.symbol
+      url: 'portfolios/' + this.props.portfolioId +'/positions/' + this.props.data.symbol
     }).done((response) => {
       this.setState({numShares: response.numShares, buyPrice: response.buyPrice})
       this.setState({costBasis: (this.state.numShares * this.props.data.Ask)})
@@ -35,20 +35,27 @@ class Position extends React.Component {
 
     if (yourDetailsAreShowing) {
       var details = (
-        <table>
-          <tbody>
-          <tr>
-            <th className="t-headers">Current Value</th>
-            <th className="t-headers">Cost Basis</th>
-            <th className="t-headers">P & L</th>
-          </tr>
-          <tr>
-            <td>{this.state.costBasis}</td>
-            <td>{this.state.costValue}</td>
-            <td>{this.state.pnL}</td>
-          </tr>
-          </tbody>
-        </table>
+        <div>
+          <table>
+            <tbody>
+            <tr>
+              <th className="t-headers">Current Value</th>
+              <th className="t-headers">Cost Basis</th>
+              <th className="t-headers">P & L</th>
+            </tr>
+            <tr>
+              <td>{this.state.costBasis}</td>
+              <td>{this.state.costValue}</td>
+              <td>{this.state.pnL}</td>
+            </tr>
+            </tbody>
+          </table>
+          <form action={'/users/'+ this.props.userId +'/portfolios/' + this.props.portfolioId + '/positions/' + this.props.data.symbol} method="post">
+            <input type="hidden" name="_method" value="patch"/>
+            <input type="text" name="position[num_shares]" placeholder="Sell"/>
+            <input type="submit" value="Sell"/>
+          </form>
+        </div>
       )
     }
     return(
