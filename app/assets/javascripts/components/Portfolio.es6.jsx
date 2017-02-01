@@ -64,7 +64,7 @@ class Portfolio extends React.Component {
           {
             this.state.positions.map((pos, i) => {
               return (
-                <Position key={i} data={pos} />
+                <Position key={i} data={pos} portfolioId={this.props.portfolioId} userId={this.props.userId}/>
               )
             })
           }
