@@ -1,4 +1,19 @@
-temp = User.new(full_name: 'jj', email:'jj@jj.com', password: 'password')
-temp.save
-temp.portfolios.create(name: 'fun stuff')
-temp.portfolios.first.positions.create(symbol: 'AAPL', buy_price: 100, num_shares: 50)
+User.create(full_name: 'Tina', email:'tina@moneyz.com', password: 'password')
+
+tickers = %w(AAPL YHOO GOOG A C HOG HPQ INTC MSFT WMT TGT TXN KO MMM LUV T NYT BUD ZEUS MOO GRR COOL BOOM FIZZ NASDAQ DJIA AMZN)
+portfolios = %w(Tiger Dog Bird Elephant Wolf Fish)
+
+portfolios.each do |po|
+  Portfolio.create(user_id: 1, name: po)
+  Position.create(symbol: tickers.sample, buy_price: rand(50..300), num_shares: rand(20..200), user_id: 1, portfolio_id: Portfolio.last.id)
+  Position.create(symbol: tickers.sample, buy_price: rand(50..300), num_shares: rand(20..200), user_id: 1, portfolio_id: Portfolio.last.id)
+  Position.create(symbol: tickers.sample, buy_price: rand(50..300), num_shares: rand(20..200), user_id: 1, portfolio_id: Portfolio.last.id)
+  Position.create(symbol: tickers.sample, buy_price: rand(50..300), num_shares: rand(20..200), user_id: 1, portfolio_id: Portfolio.last.id)
+  Position.create(symbol: tickers.sample, buy_price: rand(50..300), num_shares: rand(20..200), user_id: 1, portfolio_id: Portfolio.last.id)
+  Position.create(symbol: tickers.sample, buy_price: rand(50..300), num_shares: rand(20..200), user_id: 1, portfolio_id: Portfolio.last.id)
+  Position.create(symbol: tickers.sample, buy_price: rand(50..300), num_shares: rand(20..200), user_id: 1, portfolio_id: Portfolio.last.id)
+  Position.create(symbol: tickers.sample, buy_price: rand(50..300), num_shares: rand(20..200), user_id: 1, portfolio_id: Portfolio.last.id)
+  Position.create(symbol: tickers.sample, buy_price: rand(50..300), num_shares: rand(20..200), user_id: 1, portfolio_id: Portfolio.last.id)
+  Position.create(symbol: tickers.sample, buy_price: rand(50..300), num_shares: rand(20..200), user_id: 1, portfolio_id: Portfolio.last.id)
+  Position.create(symbol: tickers.sample, buy_price: rand(50..300), num_shares: rand(20..200), user_id: 1, portfolio_id: Portfolio.last.id)
+end
