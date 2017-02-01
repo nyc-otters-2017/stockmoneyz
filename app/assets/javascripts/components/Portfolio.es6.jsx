@@ -72,7 +72,7 @@ class Portfolio extends React.Component {
       )
     }
     return (
-      <div>
+      <div className="portfolio-container">
         <a href="#" onClick={this.handleClick} ><h1>{this.props.portfolioName}</h1></a>
         { details }
       </div>

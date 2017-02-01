@@ -38,9 +38,9 @@ class Position extends React.Component {
         <table>
           <tbody>
           <tr>
-            <th>Current Value</th>
-            <th>Cost Basis</th>
-            <th>P & L</th>
+            <th className="t-headers">Current Value</th>
+            <th className="t-headers">Cost Basis</th>
+            <th className="t-headers">P & L</th>
           </tr>
           <tr>
             <td>{this.state.costBasis}</td>
