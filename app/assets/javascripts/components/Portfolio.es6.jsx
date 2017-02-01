@@ -24,14 +24,13 @@ class Portfolio extends React.Component {
       method:"post",
       url: '/users/' + this.props.userId + '/portfolios/' + this.props.portfolioId +'/create',
 
-      data: {position: {buy_price: price, num_shares: shares, symbol: someSymbol } }
+      data: {position: {buy_price: price, num_shares: shares, symbol: someSymbol.toUpperCase() } }
 
 
     }).success(function(response){
-        this.setState({positions: positions.push(response)})
-
-
-    })
+        this.state.positions.push(response)
+        this.setState({positions: this.state.positions})
+    }.bind(this))
   }
 
 
@@ -58,7 +57,7 @@ class Portfolio extends React.Component {
     if (yourDetailsAreShowing) {
       var details = (
         <div>
-         // <CreatePosition onPostPosition={this.postPosition}/>
+         <CreatePosition onPostPosition={this.postPosition}/>
           {
             this.state.positions.map((pos, i) => {
               return (
