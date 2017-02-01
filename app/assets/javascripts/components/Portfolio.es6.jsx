@@ -12,24 +12,31 @@ class Portfolio extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.getPositions = this.getPositions.bind(this)
+    // this.instantLoad = this.instantLoad.bind(this)
   }
 
 
 
 
   getPositions(userId,id) {
-    $.ajax({
-      url: 'portfolios/' + id + '/positions'
-    }).done((response) => {
+      $.ajax({
+        url: 'portfolios/' + id + '/positions'
+      }).done((response) => {
+        this.setState({positions: [].concat.apply([], response.query.results.quote)})
+      });
+  }
 
-      this.setState({positions: [].concat.apply([], response.query.results.quote)})
+  instantLoad(userId,id) {
+    this.getPositions(userId, id)
+    var timer = setInterval(() => {
+      this.getPositions(userId, id)
+    }, 5000)
 
-    })
   }
 
   handleClick(event) {
     event.preventDefault()
-    this.getPositions(this.props.userId,this.props.portfolioId)
+    this.instantLoad(this.props.userId,this.props.portfolioId)
     let status = this.state.details
     this.setState({details: !status})
   }
