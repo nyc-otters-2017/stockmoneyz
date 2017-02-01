@@ -7,18 +7,16 @@ class CreatePosition extends React.Component {
 
   handleSubmit(e){
     e.preventDefault()
-
     sym = this.refs.symbolVal
     price = this.refs.priceVal
     shares = this.refs.sharesVal
-
     this.props.onPostPosition(price.value,shares.value,sym.value)
-
-
+    sym.value = ''
+    price.value = ''
+    shares.value = ''
   }
 
   render(){
-
     return(
       <div>
       <form onSubmit={this.handleSubmit} >

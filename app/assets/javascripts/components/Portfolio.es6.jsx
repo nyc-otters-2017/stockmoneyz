@@ -20,22 +20,18 @@ class Portfolio extends React.Component {
 
 
   postPosition(price,shares,someSymbol){
-
     $.ajax({
       method:"post",
       url: '/users/' + this.props.userId + '/portfolios/' + this.props.portfolioId +'/create',
-
       data: {position: {buy_price: price, num_shares: shares, symbol: someSymbol.toUpperCase() } }
-
-
     }).success(function(response){
-        this.state.positions.push(response)
-        this.setState({positions: this.state.positions})
+        this.setState({positions: [response, ...this.state.positions]})
     }.bind(this))
+    this.getPositions(this.props.portfolioId)
   }
 
 
-  getPositions(userId,id) {
+  getPositions(id) {
       $.ajax({
         url: 'portfolios/' + id + '/positions'
       }).done((response) => {
@@ -43,17 +39,17 @@ class Portfolio extends React.Component {
       });
   }
 
-  instantLoad(userId,id) {
-    this.getPositions(userId, id)
+  instantLoad(id) {
+    this.getPositions(id)
     var timer = setInterval(() => {
-      this.getPositions(userId, id)
+      this.getPositions(id)
     }, 5000)
 
   }
 
   handleClick(event) {
     event.preventDefault()
-    this.instantLoad(this.props.userId,this.props.portfolioId)
+    this.instantLoad(this.props.portfolioId)
     let status = this.state.details
     this.setState({details: !status})
   }
@@ -68,8 +64,6 @@ class Portfolio extends React.Component {
           {
             this.state.positions.map((pos, i) => {
               return (
-
-
                 <Position key={i} data={pos} />
               )
             })
