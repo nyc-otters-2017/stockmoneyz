@@ -5,14 +5,14 @@ class CreatePosition extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleSubmit(){
+  handleSubmit(e){
     e.preventDefault()
 
-    sym = refs.symbolVal
-    price = refs.priceVal
-    shares = refs
+    sym = this.refs.symbolVal
+    price = this.refs.priceVal
+    shares = this.refs.sharesVal
 
-    this.props.onPostPosition()
+    this.props.onPostPosition(price.value,shares.value,sym.value)
 
 
   }

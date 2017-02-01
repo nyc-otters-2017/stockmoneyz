@@ -9,7 +9,15 @@ class PortfoliosController < ApplicationController
   end
 
  def create
-    current_user.portfolios.positions.new(position_params)
+
+  portfolio =  current_user.portfolios.find_by(id: params[:user_id])
+  new_portfolio = portfolio.positions.new(position_params)
+  new_portfolio.user_id = current_user.id
+
+  if new_portfolio.save
+    render json: new_portfolio
+  end
+
   end
 
 
