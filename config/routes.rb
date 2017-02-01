@@ -10,10 +10,12 @@ Rails.application.routes.draw do
 
   resources :users do
     get 'portfolios/:id/positions' => 'portfolios#positions'
+    post 'portfolios/:user_id/create' => 'portfolios#create'
     get 'portfolios' => 'portfolios#index'
     get 'portfolios/all' => 'portfolios#all'
     get 'portfolios/list' => 'portfolios#list'
     get 'positions/:symbol' => 'positions#details'
+    resources :position
   end
 
 

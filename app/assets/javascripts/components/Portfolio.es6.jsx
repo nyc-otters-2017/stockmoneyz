@@ -12,8 +12,28 @@ class Portfolio extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
     this.getPositions = this.getPositions.bind(this)
-    // this.instantLoad = this.instantLoad.bind(this)
+
+
+    this.postPosition = this.postPosition.bind(this)
+
   }
+
+
+  postPosition(price,shares,someSymbol){
+
+    $.ajax({
+      method:"post",
+      url: '/users/' + this.props.userId + '/portfolios/' + this.props.portfolioId +'/create',
+
+      data: {position: {buy_price: price, num_shares: shares, symbol: someSymbol.toUpperCase() } }
+
+
+    }).success(function(response){
+        this.state.positions.push(response)
+        this.setState({positions: this.state.positions})
+    }.bind(this))
+  }
+
 
   getPositions(userId,id) {
       $.ajax({
@@ -28,6 +48,7 @@ class Portfolio extends React.Component {
     var timer = setInterval(() => {
       this.getPositions(userId, id)
     }, 5000)
+
   }
 
   handleClick(event) {
@@ -43,9 +64,12 @@ class Portfolio extends React.Component {
     if (yourDetailsAreShowing) {
       var details = (
         <div>
+         <CreatePosition onPostPosition={this.postPosition}/>
           {
             this.state.positions.map((pos, i) => {
               return (
+
+
                 <Position key={i} data={pos} />
               )
             })

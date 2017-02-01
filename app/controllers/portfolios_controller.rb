@@ -8,6 +8,22 @@ class PortfoliosController < ApplicationController
     render json: current_user.portfolios
   end
 
+ def create
+
+  portfolio =  current_user.portfolios.find_by(id: params[:user_id])
+  new_portfolio = portfolio.positions.new(position_params)
+  new_portfolio.user_id = current_user.id
+
+  if new_portfolio.save
+    render json: new_portfolio
+  end
+
+  end
+
+
+
+
+
   def positions
     require_user
     portfolio = current_user.portfolios.find(params[:id])
@@ -21,6 +37,11 @@ class PortfoliosController < ApplicationController
 
   def portfolio_params
     params.require(:portfolio).permit(:id)
+  end
+
+
+  def position_params
+    params.require(:position).permit(:symbol, :buy_price, :num_shares)
   end
 
 end
